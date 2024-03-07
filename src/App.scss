@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.card-img-top {
+  max-width: 50%; // Chiều rộng tối đa của hình ảnh
+  max-height: auto; // Chiều cao tối đa của hình ảnh
+  object-fit: cover; // Đảm bảo hình ảnh luôn vừa với kích thước đã chỉ định
+}
+.navbar-brand {
+  font-size: 24px; // Tăng giá trị này để làm cho chữ của thương hiệu Navbar to hơn
+}
+
+.nav-link {
+  font-size: 18px; // Tăng giá trị này để làm cho chữ của các liên kết Navbar to hơn
+}
+.NavDropdown {
+  font-size: 18px; // Tăng giá trị này để làm cho chữ của các liên kết Navbar to hơn
+}
+
+// Điều chỉnh kích thước chữ
+.card-title {
+  font-size: 20px; // Kích thước chữ cho tiêu đề
+}
+
+.card-text {
+  font-size: 16px; // Kích thước chữ cho văn bản
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-container {
+  max-width: 500px;
+  width: 80%;
+  padding: 40px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  .title {
+    font-size: 23px;
+    font-weight: 600;
+    padding-bottom: 30px;
+    color: #333;
+  }
+
+  .text {
+    font-weight: 600;
+    padding-bottom: 10px;
+    color: #555;
+  }
+
+  input[type='text'],
+  input[type='password'],
+  input[type='email'] {
+    padding: 15px 20px;
+    outline: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 16px;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    &:focus {
+      border-color: #0056b3;
+    }
+  }
+
+  .input-2 {
+    position: relative;
+    width: 100%;
+
+    .fa-eye,
+    .fa-eye-slash {
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #888;
+    }
+  }
+
+  .button {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    background-color: #0056b3;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#0056b3, 10%);
+    }
+
+    &:disabled {
+      background-color: #ddd;
+      color: #333;
+      cursor: not-allowed;
+    }
+  }
+
+  .back {
+    margin-top: 30px;
+    color: #555;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
