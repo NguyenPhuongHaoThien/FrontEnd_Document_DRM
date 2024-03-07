@@ -17,6 +17,7 @@
     "react-autosuggest": "^10.1.0",
     "react-bootstrap": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
     "react-error-overlay": "6.0.9",
     "react-paginate": "^8.2.0",
     "react-pdf": "^7.7.1",

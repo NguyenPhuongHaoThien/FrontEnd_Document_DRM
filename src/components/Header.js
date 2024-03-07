@@ -36,7 +36,7 @@ const Header = (props) => {
                         <Nav.Link href="/documents">Sách</Nav.Link>
                     </Nav>
                     <Nav>
-                        {user && user.email && <span className='nav-link'> Welcom {user.email }!!! </span>}
+                        {user && user.email && <span className='nav-link'> <>Welcome: {user.email }!!!</> </span>}
                         <NavDropdown title="Tài khoản" id="basic-nav-dropdown">
                         {
                             user && user.auth 
