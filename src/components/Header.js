@@ -1,60 +1,88 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { UserContext } from '../context/UserContext';
-import { useEffect, useState } from 'react';
-const Header = (props) => {
-  const {logout, user} = useContext(UserContext);
+import { CartContext } from '../context/CartContext'; // Import CartContext
+import { House, Book, PersonCircle, BoxArrowRight, Cart as CartIcon } from 'react-bootstrap-icons';
 
+const Header = (props) => {
+  const { logout, user } = useContext(UserContext);
+  const { orderItems } = useContext(CartContext); // Use CartContext to access orderItems
   const navigate = useNavigate();
 
-  // const[hideHeader, setHideHeader] = useState(false);
-  // useEffect(()=>{
-  //   if (window.location.pathname === '/login') {
-  //     setHideHeader(true);
-  //   }
-  // }, [])
-  
   const handleLogout = () => {
     logout();
     navigate('/login');
     toast.success('Đăng xuất thành công');
-  }
-    return (
-        <>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Container>
-                    <Navbar.Brand href="/">WAKA</Navbar.Brand>
-                  {( user && user.auth == true || window.location.pathname === '/') &&
-                   <>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/">Trang chủ</Nav.Link>
-                        <Nav.Link href="/documents">Sách</Nav.Link>
-                    </Nav>
-                    <Nav>
-                        {user && user.email && <span className='nav-link'> <>Welcome: {user.email }!!!</> </span>}
-                        <NavDropdown title="Tài khoản" id="basic-nav-dropdown">
-                        {
-                            user && user.auth 
-                            ? <NavDropdown.Item onClick={handleLogout}>Đăng xuất</NavDropdown.Item>
-                            : 
-                            <>
-                                <NavDropdown.Item href="/login">Đăng nhập</NavDropdown.Item> 
-                                <NavDropdown.Item href="/register">Đăng ký</NavDropdown.Item>
-                            </>
-                        }
-                        </NavDropdown>
-                    </Nav>
+  };
+
+  const navigateToProfile = () => {
+    if (user && user.id) {
+      navigate(`/user/${user.id}`);
+    }
+  };
+
+  return (
+    <>
+      <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+        <Container>
+          <Navbar.Brand href="/intro">
+            <House size={24} className="me-2" />
+            WAKA
+          </Navbar.Brand>
+          {(user && user.auth === true || window.location.pathname === '/') && (
+            <>
+              <Nav className="me-auto">
+                <Nav.Link href="/">
+                  <House size={20} className="me-2" />
+                  Trang chủ
+                </Nav.Link>
+                <Nav.Link href="/home/documents-free">
+                  <Book size={20} className="me-2" />
+                  Tài liệu miễn phí
+                </Nav.Link>
+                <Nav.Link href="/admin">Quản Lý</Nav.Link>
+              </Nav>
+              <Nav>
+                {user && user.email && <span className="nav-link text-light">Xin chào: {user.email}</span>}
+                <Link to="/cart" className="nav-link text-light position-relative">
+                <CartIcon size={20} className="me-2" />
+                Danh Sách Xin
+                {orderItems.length > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {orderItems.length}
+                        <span className="visually-hidden">số lượng tài liệu: </span>
+                    </span>
+                )}
+            </Link>
+
+                <NavDropdown title={<PersonCircle size={20} className="me-2" />} id="basic-nav-dropdown">
+                  {user && user.auth ? (
+                    <>
+                      <NavDropdown.Item onClick={handleLogout}>
+                        <BoxArrowRight size={20} className="me-2" />
+                        Đăng xuất
+                      </NavDropdown.Item>
+                      <NavDropdown.Item onClick={navigateToProfile}>Thông tin cá nhân</NavDropdown.Item>
                     </>
-                  }
-                </Container>
-            </Navbar>
-        </>
-    )
-}
+                  ) : (
+                    <>
+                      <NavDropdown.Item href="/login">Đăng nhập</NavDropdown.Item>
+                      <NavDropdown.Item href="/register">Đăng ký</NavDropdown.Item>
+                    </>
+                  )}
+                </NavDropdown>
+              </Nav>
+            </>
+          )}
+        </Container>
+      </Navbar>
+    </>
+  );
+};
 
 export default Header;

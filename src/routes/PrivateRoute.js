@@ -1,5 +1,3 @@
-import {Routes, Route} from 'react-router-dom';
-import BookReader from '../components/BookReaderPdf';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import Alert from 'react-bootstrap/Alert';

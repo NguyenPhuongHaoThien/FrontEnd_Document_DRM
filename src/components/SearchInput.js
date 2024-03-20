@@ -1,56 +1,58 @@
 // src/components/SearchInput.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { fetchSearchSuggestions } from '../services/SearchService';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 
-const SearchInput = ({ searchTerm, onSearchTermChange }) => {
+const SearchInput = ({ searchTerm, onSearchTermChange, onSuggestionSelected }) => {
     const [suggestions, setSuggestions] = useState([]);
+    const navigate = useNavigate();
+
+    const fetchSuggestions = useCallback(async (value) => {
+        if (value.length > 0) {
+            const suggestions = await fetchSearchSuggestions(value);
+            setSuggestions(suggestions);
+        } else {
+            setSuggestions([]);
+        }
+    }, []);
 
     useEffect(() => {
-        const fetchSuggestions = async () => {
-            if (searchTerm.length > 0) {
-                const suggestions = await fetchSearchSuggestions(searchTerm);
-                console.log('Fetched suggestions:', suggestions);
-                setSuggestions(suggestions);
-            } else {
-                setSuggestions([]);
-            }
-        };
-
-        fetchSuggestions();
-    }, [searchTerm]);
+        fetchSuggestions(searchTerm);
+    }, [searchTerm, fetchSuggestions]);
 
     const onSuggestionsFetchRequested = ({ value }) => {
         onSearchTermChange(value);
+        fetchSuggestions(value);
     };
 
     const onSuggestionsClearRequested = () => {
         setSuggestions([]);
     };
 
-    const getSuggestionValue = (suggestion) => {
-        console.log('Getting suggestion value for:', suggestion);
-        return suggestion.name;
-    };
+    const getSuggestionValue = (suggestion) => suggestion.name;
 
-    const renderSuggestion = (suggestion) => {
-        console.log('Rendering suggestion:', suggestion);
-        return (
-            <div>
-                {suggestion.name}
-            </div>
-        );
-    };
+    const renderSuggestion = (suggestion) => (
+        <div
+            style={{ cursor: 'pointer' }}
+            onClick={() => onSuggestionSelected(suggestion)}
+        >
+            {suggestion.name}
+        </div>
+    );
+    
 
     const inputProps = {
-        placeholder: 'Type a book title',
+        placeholder: 'Tìm kiếm tên tài liệu...',
         value: searchTerm,
         onChange: (_, { newValue }) => {
             onSearchTermChange(newValue);
         }
     };
+
+    
 
     return (
         <Form.Control as={Autosuggest}

@@ -25,20 +25,9 @@ const RegisterForm = () => {
   
       if (data === 'User created successfully') {
         toast.success('Registration successful!');
-  
-        // Log in the user
-        const loginData = await loginApi(email, password);
-        console.log('Login response:', loginData);
-  
-        if (loginData.data.success && loginData.data.data) {
-          const token = loginData.data.data;
-          loginContext(email, token);
-          navigate('/');
-        } else {
-          toast.error('Login failed after registration');
-        }
+        navigate('/login');
       } else {
-        toast.error(data.message); // Hiển thị thông báo lỗi từ server
+        toast.error(data.message);
       }
     } catch (err) {
       console.error('Error registering user:', err);

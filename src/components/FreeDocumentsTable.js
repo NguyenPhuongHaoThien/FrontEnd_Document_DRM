@@ -1,17 +1,16 @@
 // TableUsers.js
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Card, Button, Carousel, Form, Modal, InputGroup } from 'react-bootstrap';
-import { fetchAllDocument } from '../services/DocumentService';
+import { Container, Row, Col, Card, Button, Carousel, Form, Modal , InputGroup} from 'react-bootstrap';
+import { fetchFreeDocuments } from '../services/DocumentService';
 import ReactPaginate from 'react-paginate';
 import SearchInput from './SearchInput';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
 import DocumentDetail from './DocumentDetail';
-import { FaBookOpen, FaShoppingCart, FaInfoCircle, FaLock, FaLockOpen,  FaSearch, FaListAlt  } from 'react-icons/fa';
+import { FaBookOpen, FaShoppingCart, FaInfoCircle, FaLock, FaLockOpen, FaSearch, FaListAlt  } from 'react-icons/fa';
 import { fetchDocumentDetail } from '../services/DocumentService';
-import { fetchDocumentsByCategoryName } from '../services/DocumentService';
 
-const TableUsers = () => {
+const FreeDocumentsTable  = () => {
   // Các state để quản lý danh sách tài liệu, phân trang, tìm kiếm và lọc
   const [listDocument, setListDocuments] = useState([]);
   const [totalDocuments, setTotalDocuments] = useState(0);
@@ -45,26 +44,17 @@ const TableUsers = () => {
 
   // Hàm để lấy danh sách tài liệu từ server
   useEffect(() => {
-    const getDocuments = async () => {
-      let res;
-      // If selectedCategory is 'all' or not set, fetch all documents.
-      if (selectedCategory === 'all' || selectedCategory === '') {
-        res = await fetchAllDocument(searchTerm, selectedCategory, currentPage, documentsPerPage);
-      } else {
-        // If a specific category is selected, fetch documents for that category.
-        res = await fetchDocumentsByCategoryName(selectedCategory, currentPage, documentsPerPage);
-      }
-      // Check for the response content and set the state accordingly.
+    const getFreeDocuments = async () => {
+      const res = await fetchFreeDocuments(searchTerm, currentPage, documentsPerPage);
       if (res && res.content) {
         setListDocuments(res.content);
         setTotalDocuments(res.totalElements);
-      } else if (res && res.content.length === 0) {
-        setListDocuments([]);
       }
     };
   
-    getDocuments();
-  }, [currentPage, searchTerm, selectedCategory, documentsPerPage]);
+    getFreeDocuments();
+  }, [currentPage, searchTerm]);
+  
 
   // Hàm xử lý khi chuyển trang
   const handlePageClick = ({ selected: selectedPage }) => {
@@ -176,38 +166,37 @@ const TableUsers = () => {
       <Container className="mt-5">
         {/* Tìm kiếm và lọc */}
         <Row className="mb-4 align-items-center">
-            <Col md={6}>
-              <InputGroup>
-                <InputGroup.Text>
-                  <FaSearch />
-                </InputGroup.Text>
-                <SearchInput
-                  searchTerm={searchTerm}
-                  onSearchTermChange={setSearchTerm}
-                  onSuggestionSelected={handleSuggestionSelected}
-                  placeholder="Tìm kiếm tài liệu..."
-                />
-              </InputGroup>
-            </Col>
-            <Col md={6}>
-              <InputGroup>
-                <InputGroup.Text>
-                  <FaListAlt />
-                </InputGroup.Text>
-                <Form.Select
-                  aria-label="Select category"
-                  value={selectedCategory}
-                  onChange={handleCategoryChange}
-                >
-                  <option value="all">Tất cả</option>
-                  <option value="Nguyen Minh Phuong">Nguyen Minh Phuong</option>
-                  <option value="category2">Thể loại 2</option>
-                  {/* Thêm các lựa chọn khác */}
-                </Form.Select>
-              </InputGroup>
-            </Col>
-          </Row>
-
+  <Col md={6}>
+    <InputGroup>
+      <InputGroup.Text>
+        <FaSearch />
+      </InputGroup.Text>
+      <SearchInput
+        searchTerm={searchTerm}
+        onSearchTermChange={setSearchTerm}
+        onSuggestionSelected={handleSuggestionSelected}
+        placeholder="Tìm kiếm tài liệu..."
+      />
+    </InputGroup>
+  </Col>
+  <Col md={6}>
+    <InputGroup>
+      <InputGroup.Text>
+        <FaListAlt />
+      </InputGroup.Text>
+      <Form.Select
+        aria-label="Select category"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      >
+        <option value="all">Tất cả</option>
+        <option value="Nguyen Minh Phuong">Nguyen Minh Phuong</option>
+        <option value="category2">Thể loại 2</option>
+        {/* Thêm các lựa chọn khác */}
+      </Form.Select>
+    </InputGroup>
+  </Col>
+</Row>
         {/* Danh sách tài liệu */}
         <Row xs={1} md={2} lg={3} className="g-4">
           {listDocument.map((item) => (
@@ -226,6 +215,14 @@ const TableUsers = () => {
                     {item.name}{' '}
                     <FaBookOpen style={{ color: 'green', verticalAlign: 'middle' }} />
                   </Card.Title>
+                  {/* Giá tài liệu */}
+                  <Card.Text>
+                    <strong>Giá:</strong> {item.price}
+                  </Card.Text>
+                  {/* Số lượng tài liệu */}
+                  <Card.Text>
+                    <strong>Số lượng:</strong> {item.quantity}
+                  </Card.Text>
                   {/* Quyền đọc tài liệu */}
                   <Card.Text>
                     <strong>Quyền đọc:</strong>{' '}
@@ -275,7 +272,7 @@ const TableUsers = () => {
                     onClick={() => handleAddToCart(item.id)}
                     className="me-2"
                   >
-                    <FaShoppingCart className="me-2" /> Xin Quyền Đọc
+                    <FaShoppingCart className="me-2" /> Thêm Vào Giỏ Hàng
                   </Button>
                   {/* Nút xem chi tiết */}
                   <Button
@@ -339,4 +336,4 @@ const TableUsers = () => {
   );
 };
 
-export default TableUsers;
+export default FreeDocumentsTable ;
