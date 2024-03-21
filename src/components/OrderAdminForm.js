@@ -104,7 +104,7 @@ const OrderAdminForm = ({ order, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="orderStatus">
-        <Form.Label>Trạng thái: </Form.Label>
+        <Form.Label>Trạng Thái: </Form.Label>
         <Form.Control
           as="select"
           name="orderStatus"
@@ -113,15 +113,15 @@ const OrderAdminForm = ({ order, onSubmit }) => {
           required
         >
           <option value="">Chọn trạng thái</option>
-          <option value="CART">Trong danh sách</option>
-          <option value="ORDERED">Đã xin</option>
-          <option value="ACCEPTED">Chấp nhận</option>
-          <option value="CANCELLED">Từ chối</option>
+          <option value="CART">Danh Sách Xin Truy Vấn Tài Liệu</option>
+          <option value="ORDERED">Đã xin Truy Vấn Tài Liệu</option>
+          <option value="ACCEPTED">Chấp nhận Truy Vấn Tài Liệu</option>
+          <option value="CANCELLED">Từ chối Truy Vấn Tài Liệu</option>
         </Form.Control>
       </Form.Group>
 
       <Form.Group controlId="activationCodeId">
-        <Form.Label>Mã Code</Form.Label>
+        <Form.Label>Mã Code DRM</Form.Label>
         <Form.Control
           type="text"
           name="activationCodeId"
@@ -131,7 +131,7 @@ const OrderAdminForm = ({ order, onSubmit }) => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        {order ? 'Update' : 'Create'}
+        {order ? 'Cập Nhật Hồ Sơ' : 'Tạo Hồ Sợ Mới'}
       </Button>
     </Form>
   );

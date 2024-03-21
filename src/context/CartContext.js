@@ -31,39 +31,25 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const removeItemFromCart = async (documentId) => {
+  const removeItemFromCart = async (itemId) => {
     try {
-      await removeFromCart(documentId);
-      const updatedCart = await fetchCart();
-      if (updatedCart && updatedCart.length > 0) {
-        setOrderItems(updatedCart);
-        toast.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
-      } else {
-        setOrderItems([]);
-        toast.warning('Giỏ hàng đã trống sau khi xóa sản phẩm.');
-      }
+      console.log("Calling removeFromCart with itemId:", itemId);
+      const updatedOrderItems = await removeFromCart(itemId);
+      setOrderItems(updatedOrderItems);
+      toast.success('Sản phẩm đã được xóa khỏi giỏ hàng.');
+      window.location.reload();
     } catch (error) {
       console.error('Error removing from cart:', error);
-      if (error.response && error.response.status === 404) {
-        setOrderItems([]);
-        toast.warning('Giỏ hàng không tồn tại.');
+      if (error.message === 'Document not found') {
+        toast.error('Không tìm thấy tài liệu trong giỏ hàng.');
+      } else if (error.message === 'Unauthorized') {
+        toast.error('Bạn không có quyền xóa sản phẩm khỏi giỏ hàng.');
       } else {
         toast.error('Đã xảy ra lỗi khi xóa sản phẩm khỏi giỏ hàng. Vui lòng thử lại sau.');
       }
     }
   };
-  
-  const updateItemQuantity = async (documentId, quantity) => {
-    try {
-      await updateCartQuantity(documentId, quantity);
-      const updatedCart = await fetchCart();
-      setOrderItems(updatedCart);
-      toast.success('Số lượng sản phẩm đã được cập nhật.');
-    } catch (error) {
-      console.error('Error updating cart quantity:', error);
-      toast.error('Đã xảy ra lỗi khi cập nhật số lượng sản phẩm trong giỏ hàng. Vui lòng thử lại sau.');
-    }
-  };
+ 
 
   const clearCartItems = async () => {
     try {
@@ -88,8 +74,17 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const updateItemQuantity = async (documentId, quantity) => {
+    try {
+      const updatedCart = await updateCartQuantity(documentId, quantity);
+      setOrderItems(updatedCart);
+    } catch (error) {
+      console.error('Error updating item quantity:', error);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ orderItems, addItemToCart, removeItemFromCart, updateItemQuantity, clearCartItems, handlePlaceOrder }}>
+    <CartContext.Provider value={{ orderItems, addItemToCart, removeItemFromCart, updateItemQuantity, handlePlaceOrder }}>
       {children}
     </CartContext.Provider>
   );

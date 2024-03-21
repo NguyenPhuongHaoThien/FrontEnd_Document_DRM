@@ -37,7 +37,7 @@ const RegisterForm = () => {
 
   return (
     <div className="login-container">
-      <div className="title">Register</div>
+      <div className="title">Đăng Ký Tài Khoản Nhân Viên</div>
       <div className="text" style={{ textAlign: 'left' }}>Username</div>
       <input
         type="text"
@@ -46,7 +46,7 @@ const RegisterForm = () => {
         onChange={e => setUsername(e.target.value)}
         required
       />
-      <div className="text" style={{ textAlign: 'left' }}>Email</div>
+      <div className="text" style={{ textAlign: 'left' }}>Địa Chỉ Email</div>
       <input
         type="email"
         placeholder="Enter Email"
@@ -54,7 +54,7 @@ const RegisterForm = () => {
         onChange={e => setEmail(e.target.value)}
         required
       />
-      <div className="text" style={{ textAlign: 'left' }}>Password</div>
+      <div className="text" style={{ textAlign: 'left' }}>Mật Khẩu</div>
       <div className="input-2">
         <input
           type={isShowPassword ? 'text' : 'password'}
@@ -68,7 +68,7 @@ const RegisterForm = () => {
           onClick={() => setIsShowPassword(!isShowPassword)}
         />
       </div>
-      <div className="text" style={{ textAlign: 'left' }}>Confirm Password</div>
+      <div className="text" style={{ textAlign: 'left' }}>Nhập Lại Mật Khẩu</div>
       <div className="input-2">
         <input
           type={isShowPassword ? 'text' : 'password'}

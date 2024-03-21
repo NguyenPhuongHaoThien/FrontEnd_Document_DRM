@@ -48,9 +48,9 @@ const AuthorTable = () => {
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Mã Tác Giả</th>
-                <th>Tên Tác Giả</th>
-                <th>Mô Tả</th>
+                <th>Mã lý người / cơ quan ban hành</th>
+                <th>Tên lý người / cơ quan ban hành</th>
+                <th>Mô Tả lý người / cơ quan ban hành</th>
                 <th>Ảnh Tác Giả</th>
                 <th>Trạng Thái</th>
                 <th>Hành Động</th>

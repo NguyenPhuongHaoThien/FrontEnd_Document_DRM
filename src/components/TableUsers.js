@@ -10,6 +10,7 @@ import DocumentDetail from './DocumentDetail';
 import { FaBookOpen, FaShoppingCart, FaInfoCircle, FaLock, FaLockOpen,  FaSearch, FaListAlt  } from 'react-icons/fa';
 import { fetchDocumentDetail } from '../services/DocumentService';
 import { fetchDocumentsByCategoryName } from '../services/DocumentService';
+import { Badge, ListGroup } from 'react-bootstrap';
 
 const TableUsers = () => {
   // Các state để quản lý danh sách tài liệu, phân trang, tìm kiếm và lọc
@@ -227,24 +228,19 @@ const TableUsers = () => {
                     <FaBookOpen style={{ color: 'green', verticalAlign: 'middle' }} />
                   </Card.Title>
                   {/* Quyền đọc tài liệu */}
-                  <Card.Text>
-                    <strong>Quyền đọc:</strong>{' '}
-                    {item.drmEnable ? (
-                      item.activationCode.status === 'USED' ? (
-                        <>
-                          <FaLock style={{ color: 'green', verticalAlign: 'middle' }} /> Đọc Với Quyền Đã Cấp
-                        </>
-                      ) : (
-                        <>
-                          <FaLockOpen style={{ color: 'red', verticalAlign: 'middle' }} /> Xin Cấp Quyền
-                        </>
-                      )
-                    ) : (
-                      <>
-                        <FaLockOpen style={{ color: 'green', verticalAlign: 'middle' }} /> Đọc Tự Do
-                      </>
-                    )}
-                  </Card.Text>
+                  <ListGroup.Item>
+            <Badge bg={item.drmEnabled ? 'success' : 'danger'}>
+              {item.drmEnabled ? (
+                <>
+                  <FaLock className="me-2" /> DRM Enabled
+                </>
+              ) : (
+                <>
+                  <FaLockOpen className="me-2" /> Không có DRM
+                </>
+              )}
+            </Badge>
+          </ListGroup.Item>
                   {/* Nút đọc tài liệu */}
                   {user.auth && (
                     <Button
@@ -252,7 +248,7 @@ const TableUsers = () => {
                       className="me-2"
                       onClick={() => handleReadDocument(item.id)}
                     >
-                      <FaBookOpen className="me-2" /> Đọc Tài Liệu
+                      <FaBookOpen className="me-2" /> Truy Vấn Tài Liệu
                     </Button>
                   )}
                   {/* Nút xin quyền đọc */}
@@ -275,14 +271,14 @@ const TableUsers = () => {
                     onClick={() => handleAddToCart(item.id)}
                     className="me-2"
                   >
-                    <FaShoppingCart className="me-2" /> Xin Quyền Đọc
+                    <FaShoppingCart className="me-2" /> Xin Quyền Truy Vấn Tài Liệu
                   </Button>
                   {/* Nút xem chi tiết */}
                   <Button
                     variant="info"
                     onClick={() => handleShowDocumentDetail(item)}
                   >
-                    <FaInfoCircle className="me-2" /> Xem Chi Tiết
+                    <FaInfoCircle className="me-2" /> Xem Chi Tiết Tài Liệu
                   </Button>
                 </Card.Body>
               </Card>

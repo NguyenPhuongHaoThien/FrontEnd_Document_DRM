@@ -47,11 +47,11 @@ const DocumentForm = ({ document, onClose }) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h1>{document ? 'Cập nhật Tài liệu' : 'Tạo Tài liệu Mới'}</h1>
+            <h1>{document ? 'Cập nhật Hồ Sơ Tài liệu' : 'Tạo Hồ Sơ Tài liệu Mới'}</h1>
 
             {/* Tên sách */}
             <Form.Group as={Row} className="mb-3" controlId="formName">
-                <Form.Label column sm={2}>Tên sách:</Form.Label>
+                <Form.Label column sm={2}>Tên Tài Liệu:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Book/></InputGroup.Text>
@@ -60,31 +60,9 @@ const DocumentForm = ({ document, onClose }) => {
                 </Col>
             </Form.Group>
 
-            {/* Giá sách */}
-            <Form.Group as={Row} className="mb-3" controlId="formPrice">
-                <Form.Label column sm={2}>Giá sách:</Form.Label>
-                <Col sm={10}>
-                    <InputGroup>
-                        <InputGroup.Text><Tag/></InputGroup.Text>
-                        <FormControl type="number" name="price" value={formData.price} onChange={handleChange} />
-                    </InputGroup>
-                </Col>
-            </Form.Group>
-
-            {/* Số lượng */}
-            <Form.Group as={Row} className="mb-3" controlId="formQuantity">
-                <Form.Label column sm={2}>Số lượng:</Form.Label>
-                <Col sm={10}>
-                    <InputGroup>
-                        <InputGroup.Text>#</InputGroup.Text>
-                        <FormControl type="number" name="quantity" value={formData.quantity} onChange={handleChange} />
-                    </InputGroup>
-                </Col>
-            </Form.Group>
-
             {/* ID tác giả */}
             <Form.Group as={Row} className="mb-3" controlId="formAuthorId">
-                <Form.Label column sm={2}>ID tác giả:</Form.Label>
+                <Form.Label column sm={2}>ID lý người / cơ quan ban hành:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Person/></InputGroup.Text>
@@ -95,7 +73,7 @@ const DocumentForm = ({ document, onClose }) => {
 
             {/* ID nhà xuất bản */}
             <Form.Group as={Row} className="mb-3" controlId="formPublisherId">
-                <Form.Label column sm={2}>ID nhà xuất bản:</Form.Label>
+                <Form.Label column sm={2}>ID người / cơ quan phê duyệt:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><House/></InputGroup.Text>
@@ -106,7 +84,7 @@ const DocumentForm = ({ document, onClose }) => {
 
             {/* ID danh mục */}
             <Form.Group as={Row} className="mb-3" controlId="formCategoryId">
-                <Form.Label column sm={2}>ID danh mục:</Form.Label>
+                <Form.Label column sm={2}>ID Loại Tài Liệu:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text>#</InputGroup.Text>
@@ -139,7 +117,7 @@ const DocumentForm = ({ document, onClose }) => {
 
             {/* Ngày xuất bản */}
             <Form.Group as={Row} className="mb-3" controlId="formPublicationDate">
-                <Form.Label column sm={2}>Ngày xuất bản:</Form.Label>
+                <Form.Label column sm={2}>Ngày phê duyệt:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Calendar/></InputGroup.Text>
@@ -150,7 +128,7 @@ const DocumentForm = ({ document, onClose }) => {
 
             {/* Mô tả sách */}
             <Form.Group as={Row} className="mb-3" controlId="formDescription">
-                <Form.Label column sm={2}>Mô tả sách:</Form.Label>
+                <Form.Label column sm={2}>Mô tả tài liệu:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><FileEarmarkText/></InputGroup.Text>
@@ -159,16 +137,6 @@ const DocumentForm = ({ document, onClose }) => {
                 </Col>
             </Form.Group>
 
-            {/* ID giảm giá */}
-            <Form.Group as={Row} className="mb-3" controlId="formDiscountId">
-                <Form.Label column sm={2}>ID giảm giá:</Form.Label>
-                <Col sm={10}>
-                    <InputGroup>
-                        <InputGroup.Text><Percent/></InputGroup.Text>
-                        <FormControl type="text" name="discountId" value={formData.discountId} onChange={handleChange} />
-                    </InputGroup>
-                </Col>
-            </Form.Group>
 
             {/* DRM Enabled */}
             <Form.Group as={Row} className="mb-3" controlId="formDRMEnabled">
@@ -183,7 +151,7 @@ const DocumentForm = ({ document, onClose }) => {
 
             {/* Trạng thái */}
             <Form.Group as={Row} className="mb-3" controlId="formStatus">
-                <Form.Label column sm={2}>Trạng thái:</Form.Label>
+                <Form.Label column sm={2}>Trạng thái tài liệu:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Tag/></InputGroup.Text>
@@ -193,7 +161,7 @@ const DocumentForm = ({ document, onClose }) => {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-                {document ? 'Cập nhật' : 'Tạo'}
+                {document ? 'Cập nhật Hồ Sơ Tài Liệu ' : 'Tạo Hồ Sơ Tài Liệu Mới'}
             </Button>
         </Form>
     );

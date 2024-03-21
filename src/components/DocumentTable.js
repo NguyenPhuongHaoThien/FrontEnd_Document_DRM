@@ -83,24 +83,24 @@ const DocumentTable = () => {
     return (
         <Container>
             <Card className="mb-3">
-                <Card.Header as="h5">Quản lý tài liệu</Card.Header>
+                <Card.Header as="h5">Quản lý Hồ Sơ tài liệu</Card.Header>
                 <Card.Body>
                     <Button variant="primary" onClick={handleAddDocument} className="mb-3">
-                        Thêm Tài Liệu
+                        Thêm Hồ Sơ Tài Liệu
                     </Button>
                     <Table striped bordered hover responsive>
                         <thead>
                             <tr>
                                 <th>Tên Tài liệu</th>
-                                <th>ID tác giả</th>
-                                <th>ID nhà xuất bản</th>
-                                <th>ID danh mục</th>
+                                <th>ID người / cơ quan ban hành</th>
+                                <th>ID người / cơ quan phê duyệt</th>
+                                <th>ID Loại Tài Liệu</th>
                                 <th>URL hình ảnh</th>
                                 <th>URL PDF</th>
-                                <th>Ngày xuất bản</th>
-                                <th>Mô tả sách</th>
+                                <th>Ngày phê duyệt</th>
+                                <th>Mô tả tài liệu</th>
                                 <th>DRM Enabled</th>
-                                <th>Trạng thái</th>
+                                <th>Trạng thái Tài Liệu</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -121,10 +121,10 @@ const DocumentTable = () => {
                                     <td>{document.status}</td>
                                     <td>
                                         <Button variant="warning" onClick={() => handleUpdateDocument(document)} className="me-2">
-                                            Update
+                                            Cập Nhật Hồ Sơ Tài Liệu
                                         </Button>
                                         <Button variant="danger" onClick={() => handleDeleteDocument(document)}>
-                                            Delete
+                                            Xóa Hồ Sơ Tài Liệu
                                         </Button>
                                     </td>
                                 </tr>

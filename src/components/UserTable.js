@@ -79,26 +79,26 @@ const UserTable = () => {
     return (
         <Container>
             <Card className="mb-3">
-                <Card.Header as="h5">Quản lý người dùng</Card.Header>
+                <Card.Header as="h5">Quản Lý Hồ Sơ Nhân Viên</Card.Header>
                 <Card.Body>
                     <Button variant="primary" onClick={handleAddUser} className="mb-3">
-                        Thêm người dùng
+                        Thêm Nhân Viên Mới
                     </Button>
                     <Table striped bordered hover responsive>
                         <thead>
                         <tr>
-                            <th>Ảnh đại diện</th>
+                            <th>Ảnh Nhân Viên</th>
                             <th>Tên người dùng</th>
-                            <th>Chức vụ</th>
-                            <th>Email</th>
+                            <th>Chức vụ & phòng ban hiện tại</th>
+                            <th>Địa Chỉ Email</th>
                             <th>Số điện thoại</th>
-                            <th>Họ và tên</th>
-                            <th>Địa chỉ</th>
+                            <th>Họ tên nhân viên</th>
+                            <th>Địa chỉ nhân viên</th>
                             <th>Giới tính</th>
                             <th>Ngày sinh</th>
-                            <th>Mô tả bản thân</th>
-                            <th>Vai trò</th>
-                            <th>Khoá</th>
+                            <th>Mô tả bản thân nhân viên</th>
+                            <th>Vai trò hệ thống</th>
+                            <th>Khoá nhân viên</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -126,14 +126,14 @@ const UserTable = () => {
                                 <td>
                                     <Button variant="success" onClick={() => handleChangeUserPassword(user)}
                                             className="me-2">
-                                        Đổi mật khẩu
+                                        Đổi mật khẩu nhân viên
                                     </Button>
                                     <Button variant="warning" onClick={() => handleUpdateUser(user)}
                                             className="me-2">
-                                        Update
+                                        Cập nhật hồ sơ nhân viên
                                     </Button>
                                     <Button variant="danger" onClick={() => handleDeleteUser(user)}>
-                                        Delete
+                                        Xóa hồ sơ nhân viên
                                     </Button>
                                 </td>
                             </tr>

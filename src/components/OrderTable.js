@@ -50,18 +50,18 @@ const OrderTable = () => {
   return (
     <Container>
       <Card className="mb-3">
-        <Card.Header as="h5">Quản lý Yêu Cầu Đọc</Card.Header>
+        <Card.Header as="h5">Quản lý Yêu Cầu Truy Vấn Tài Liệu</Card.Header>
         <Card.Body>
           <Button variant="primary" onClick={handleAddOrder} className="mb-3">
-            Thêm đơn hàng
+            Thêm Hồ Sơ Mới
           </Button>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Tên người dùng</th>
+                <th>Tên Nhân Viên</th>
                 <th>Tên tài liệu</th>
-                <th>Mã kích hoạt</th>
-                <th>Ngày yêu cầu</th>
+                <th>Mã Code DRM</th>
+                <th>Ngày yêu cầu Truy Vấn Tài Liệu</th>
                 <th>Trạng thái </th>
                 <th>Thao tác</th>
               </tr>
@@ -119,7 +119,7 @@ const OrderTable = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedOrder ? 'Cập nhật Yêu cầu' : 'Thêm Yêu Cầu'}</Modal.Title>
+          <Modal.Title>{selectedOrder ? 'Cập nhật Hồ Sơ' : 'Xóa Hồ Sơ'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <OrderAdminForm order={selectedOrder} onSubmit={handleFormSubmit} />
@@ -129,4 +129,4 @@ const OrderTable = () => {
   );
 };
 
-export default OrderTable;
+export default OrderTable;  

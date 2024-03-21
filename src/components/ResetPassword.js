@@ -87,11 +87,11 @@ const ResetPassword = () => {
       <div className="reset-password-container shadow p-4 rounded">
         <h2 className="text-center mb-4">
           <FaLock className="mr-2" />
-          Reset Password
+          Tạo Lại Mật Khẩu
         </h2>
         <Form>
           <Form.Group controlId="formPassword">
-            <Form.Label>New Password</Form.Label>
+            <Form.Label>Mật Khẩu Mới</Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -100,7 +100,7 @@ const ResetPassword = () => {
             />
           </Form.Group>
           <Form.Group controlId="formConfirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Nhập Lại Mật Khẩu Mới</Form.Label>
             <Form.Control
               type="password"
               value={confirmPassword}

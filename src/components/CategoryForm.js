@@ -30,7 +30,7 @@ const CategoryForm = ({ category, onSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="name">
-        <Form.Label>Tên Thể Loại</Form.Label>
+        <Form.Label>Tên Loại Tài Liệu</Form.Label>
         <Form.Control
           type="text"
           name="name"
@@ -41,7 +41,7 @@ const CategoryForm = ({ category, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="description">
-        <Form.Label>Mô Tả</Form.Label>
+        <Form.Label>Mô Tả Loại Tài Liệu</Form.Label>
         <Form.Control
           type="text"
           name="description"
@@ -51,7 +51,7 @@ const CategoryForm = ({ category, onSubmit }) => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        {category ? 'Update' : 'Create'}
+        {category ? 'Cập Nhật Hồ Sơ Loại Tài Liệu' : 'Tạo Hồ Sơ Loại Tài Liệu'}
       </Button>
     </Form>
   );

@@ -10,7 +10,6 @@ import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
 import RegisterForm from '../components/RegisterForm';
 import AdminPage from '../components/AdminPage';
-import OrderForm from '../components/OrderForm';
 import MyProfile from '../components/MyProfile';
 import OrderTable from '../components/OrderTable';
 import DocumentDetail from '../components/DocumentDetail';
@@ -25,6 +24,8 @@ import FreeDocumentsTable from '../components/FreeDocumentsTable';
 import ForgotPassword from '../components/ForgotPassword';
 import ResetPassword from '../components/ResetPassword';
 import IntroPage from '../components/IntroPage';
+import HistoryOrder from '../components/HistoryOrder';
+
 
 
 
@@ -38,6 +39,7 @@ const AppRoutes = () => {
                 <Route path="/" element={<TableUsers />} />
                 <Route path="/home/category" element={<TableUsers />} />
                 <Route path="/home/documents-free" element={<FreeDocumentsTable />} />
+                <Route path="/user/history" element={<HistoryOrder />} />
                 
                 {/* <Route path="/read/:id/pdf" element={<BookReader />} /> */}
                 <Route path="/login" element={<LoginForm />} />

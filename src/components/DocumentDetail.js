@@ -25,13 +25,7 @@ const DocumentDetail = ({ document, onReadDocument, onAddToCart }) => {
             <FaBuilding className="me-2" /> <strong>Nhà xuất bản:</strong> {document.publisherId}
           </ListGroup.Item>
           <ListGroup.Item>
-            <FaFileAlt className="me-2" /> <strong>URL PDF:</strong> {document.pdfUrl}
-          </ListGroup.Item>
-          <ListGroup.Item>
             <FaCalendarAlt className="me-2" /> <strong>Ngày xuất bản:</strong> {document.publicationDate}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <FaPercent className="me-2" /> <strong>Giảm giá:</strong> {document.discountId || 'Không có giảm giá'}
           </ListGroup.Item>
           <ListGroup.Item>
             <Badge bg={document.drmEnabled ? 'success' : 'danger'}>
@@ -48,12 +42,6 @@ const DocumentDetail = ({ document, onReadDocument, onAddToCart }) => {
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>Trạng thái:</strong> {document.status}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <strong>Giá:</strong> {document.price}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <strong>Số lượng:</strong> {document.quantity}
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>

@@ -29,17 +29,17 @@ export const addToCart = async (documentId) => {
   }
 };
 
-export const removeFromCart = async (documentId) => {
-    try {
-      const response = await axios.post(`/cart/book/remove/${documentId}`, null, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
-      return response.data.message; // Trả về giá trị của thuộc tính "message"
-    } catch (error) {
-      console.error('Error removing from cart:', error);
-      throw error;
-    }
-  };
+export const removeFromCart = async (itemId) => {
+  try {
+    const response = await axios.post(`/cart/book/remove/${itemId}`, null, {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    });
+    return response.data; // Return the updated list of orderItems
+  } catch (error) {
+    console.error('Error removing from cart:', error);
+    throw error;
+  }
+};
 
 export const updateCartQuantity = async (documentId, quantity) => {
   try {

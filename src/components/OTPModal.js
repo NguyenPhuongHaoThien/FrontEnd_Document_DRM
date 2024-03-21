@@ -44,7 +44,7 @@ const OTPModal = ({ show, onVerify, onClose }) => {
         onChange={handleOTPChange}
         placeholder="Enter OTP"
       />
-      <button onClick={handleVerify}>Verify</button>
+      <button onClick={handleVerify}>Mã Xác Thực</button>
     </Modal>
   );
 };

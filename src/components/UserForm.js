@@ -79,7 +79,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             <h1>{userToUpdate ? 'Cập nhật Người dùng' : 'Tạo Người dùng Mới'}</h1>
 
             <Form.Group as={Row} className="mb-3" controlId="formUsername">
-                <Form.Label column sm={2}>Tên người dùng:</Form.Label>
+                <Form.Label column sm={2}>Tên Nhân Viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Person/></InputGroup.Text>
@@ -89,7 +89,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPosition">
-            <Form.Label column sm={2}>Position:</Form.Label>
+            <Form.Label column sm={2}>Chức Vụ & Phòng Ban:</Form.Label>
             <Col sm={10}>
                 <InputGroup>
                 <InputGroup.Text><PenFill/></InputGroup.Text>
@@ -99,7 +99,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formEmail">
-                <Form.Label column sm={2}>Email:</Form.Label>
+                <Form.Label column sm={2}>Đia Chỉ Email:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Envelope/></InputGroup.Text>
@@ -119,7 +119,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formFullname">
-                <Form.Label column sm={2}>Họ và tên:</Form.Label>
+                <Form.Label column sm={2}>Họ Tên Nhân Viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><Person/></InputGroup.Text>
@@ -129,7 +129,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formAddress">
-                <Form.Label column sm={2}>Địa chỉ:</Form.Label>
+                <Form.Label column sm={2}>Địa chỉ Nhân Viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><House/></InputGroup.Text>
@@ -164,7 +164,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formSubscribe">
-                <Form.Label column sm={2}>Mô tả bản thân:</Form.Label>
+                <Form.Label column sm={2}>Mô tả bản thân nhân viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><PenFill/></InputGroup.Text>
@@ -174,7 +174,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formAvatar">
-                <Form.Label column sm={2}>Ảnh đại diện:</Form.Label>
+                <Form.Label column sm={2}>Ảnh đại diện Nhân Viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Text><CardImage/></InputGroup.Text>
@@ -193,15 +193,15 @@ const UserForm = ({ userToUpdate, onClose }) => {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formRole">
-                <Form.Label column sm={2}>Vai trò:</Form.Label>
+                <Form.Label column sm={2}>Vai trò ở hệ thống:</Form.Label>
                 <Col sm={10}>
                     <Form.Select
                     name="role"
                     value={newUser.role}
                     onChange={handleFormChange}
                     >
-                    <option value="ROLE_USER">Người dùng</option>
-                    <option value="ROLE_ADMIN">Quản trị viên</option>
+                    <option value="ROLE_USER">Nhân Viên</option>
+                    <option value="ROLE_ADMIN">Quản Lý</option>
                     </Form.Select>
                 </Col>
             </Form.Group>
@@ -209,7 +209,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
 
 
             <Form.Group as={Row} className="mb-3" controlId="formIsLocked">
-                <Form.Label column sm={2}>Khóa:</Form.Label>
+                <Form.Label column sm={2}>Khóa Tài Khoản Nhân Viên:</Form.Label>
                 <Col sm={10}>
                     <InputGroup>
                         <InputGroup.Checkbox name="isLocked" checked={newUser.isLocked} onChange={handleFormChange} />
@@ -219,7 +219,7 @@ const UserForm = ({ userToUpdate, onClose }) => {
 
 
             <Button variant="primary" type="submit">
-                {userToUpdate ? 'Cập nhật' : 'Tạo'}
+                {userToUpdate ? 'Cập nhật hồ sơ nhân viên' : 'Tạo hồ sơ nhân viên mới'}
             </Button>
         </Form>
     );

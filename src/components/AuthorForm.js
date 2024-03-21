@@ -53,7 +53,7 @@ const AuthorForm = ({ author, onSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="name">
-        <Form.Label>Tên Tác Giả</Form.Label>
+        <Form.Label>Tên người / cơ quan ban</Form.Label>
         <Form.Control
           type="text"
           name="name"
@@ -74,7 +74,7 @@ const AuthorForm = ({ author, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="thumbnail">
-        <Form.Label>Ảnh Tác Giả</Form.Label>
+        <Form.Label>Ảnh người / cơ quan ban</Form.Label>
         <Form.Control
           type="text"
           name="thumbnail"

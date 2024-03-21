@@ -6,12 +6,12 @@ import { FaBook, FaUsers, FaShoppingCart, FaTag, FaUserEdit, FaBuilding } from '
 const AdminPage = () => {
   return (
     <Container className="mt-4">
-      <h1 className="mb-4">Trang Quản Trị</h1>
+      <h1 className="mb-4">Trang Quản Lý Của Admin</h1>
       <Row>
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaBook className="me-2" />Quản lý tài liệu</Card.Title>
+              <Card.Title><FaBook className="me-2" />Quản lý hồ sơ tài liệu</Card.Title>
               <Card.Text>
                 Quản lý các tài liệu, sách điện tử trong hệ thống.
               </Card.Text>
@@ -24,9 +24,9 @@ const AdminPage = () => {
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaUsers className="me-2" />Quản lý người dùng</Card.Title>
+              <Card.Title><FaUsers className="me-2" />Quản lý hồ sơ nhân viên</Card.Title>
               <Card.Text>
-                Quản lý thông tin và quyền hạn của người dùng.
+                Quản lý thông tin và quyền hạn của nhân viên.
               </Card.Text>
               <Link to="/admin/user">
                 <Button variant="primary">Truy cập</Button>
@@ -37,9 +37,9 @@ const AdminPage = () => {
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaShoppingCart className="me-2" />Quản lý đơn hàng</Card.Title>
+              <Card.Title><FaShoppingCart className="me-2" />Quản lý hồ sơ danh sách yêu cầu truy vấn</Card.Title>
               <Card.Text>
-                Theo dõi và xử lý các đơn hàng của khách hàng.
+                Theo dõi và xử lý các yêu cầu truy vấn của nhân viên.
               </Card.Text>
               <Link to="/admin/order">
                 <Button variant="primary">Truy cập</Button>
@@ -52,9 +52,9 @@ const AdminPage = () => {
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaTag className="me-2" />Quản lý thể loại sách</Card.Title>
+              <Card.Title><FaTag className="me-2" />Quản lý hồ sơ thể loại tài liệu</Card.Title>
               <Card.Text>
-                Quản lý các thể loại sách trong hệ thống.
+                Quản lý các thể loại tài liệu trong hệ thống.
               </Card.Text>
               <Link to="/admin/category">
                 <Button variant="primary">Truy cập</Button>
@@ -65,9 +65,9 @@ const AdminPage = () => {
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaUserEdit className="me-2" />Quản lý tác giả</Card.Title>
+              <Card.Title><FaUserEdit className="me-2" />Quản lý người / cơ quan ban hành </Card.Title>
               <Card.Text>
-                Quản lý thông tin về các tác giả của sách.
+                Quản lý thông tin của Quản lý người / cơ quan ban hành
               </Card.Text>
               <Link to="/admin/author">
                 <Button variant="primary">Truy cập</Button>
@@ -78,9 +78,9 @@ const AdminPage = () => {
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title><FaBuilding className="me-2" />Quản lý nhà xuất bản</Card.Title>
+              <Card.Title><FaBuilding className="me-2" />Quản lý hồ sơ người / cơ quan phê duyệt</Card.Title>
               <Card.Text>
-                Quản lý thông tin về các nhà xuất bản.
+                Quản lý thông tin hồ sơ người / cơ quan phê duyệt.
               </Card.Text>
               <Link to="/admin/publisher">
                 <Button variant="primary">Truy cập</Button>

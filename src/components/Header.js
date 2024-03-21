@@ -6,12 +6,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from '../context/UserContext';
-import { CartContext } from '../context/CartContext'; // Import CartContext
+import { CartContext } from '../context/CartContext';
 import { House, Book, PersonCircle, BoxArrowRight, Cart as CartIcon } from 'react-bootstrap-icons';
 
-const Header = (props) => {
+const Header = () => {
   const { logout, user } = useContext(UserContext);
-  const { orderItems } = useContext(CartContext); // Use CartContext to access orderItems
+  const { orderItems } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -50,16 +50,19 @@ const Header = (props) => {
               <Nav>
                 {user && user.email && <span className="nav-link text-light">Xin chào: {user.email}</span>}
                 <Link to="/cart" className="nav-link text-light position-relative">
-                <CartIcon size={20} className="me-2" />
-                Danh Sách Xin
-                {orderItems.length > 0 && (
+                  <CartIcon size={20} className="me-2" />
+                  Danh Sách Xin
+                  {orderItems && orderItems.length > 0 && (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {orderItems.length}
-                        <span className="visually-hidden">số lượng tài liệu: </span>
+                      {orderItems.length}
+                      <span className="visually-hidden">số lượng tài liệu: </span>
                     </span>
-                )}
-            </Link>
-
+                  )}
+                </Link>
+                <Nav.Link href="/user/history">
+                  <Book size={20} className="me-2" />
+                  Lịch sử Xin Quyền
+                </Nav.Link>
                 <NavDropdown title={<PersonCircle size={20} className="me-2" />} id="basic-nav-dropdown">
                   {user && user.auth ? (
                     <>

@@ -48,14 +48,14 @@ const CategoryTable = () => {
         <Card.Header as="h5">Quản lý danh mục</Card.Header>
         <Card.Body>
           <Button variant="primary" onClick={handleAddCategory} className="mb-3">
-            Thêm danh mục
+            Thêm Hồ Sơ Loại Tài Liệu
           </Button>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Mã Thể Loại</th>
-                <th>Tên Thể Loại</th>
-                <th>Mô Tả Thể Loại</th>
+                <th>Mã Loại Tài Liệu</th>
+                <th>Tên Loại Tài Liệu</th>
+                <th>Mô Tả Loại Tài Liệu</th>
                 <th>Hành Động</th>
               </tr>
             </thead>
@@ -71,13 +71,13 @@ const CategoryTable = () => {
                       onClick={() => handleChangeCategory(category)}
                       className="me-2"
                     >
-                      Update
+                      Cập nhật loại tài liệu
                     </Button>
                     <Button
                       variant="danger"
                       onClick={() => handleDeleteCategory(category)}
                     >
-                      Delete
+                      Xóa loại tài liệu
                     </Button>
                   </td>
                 </tr>

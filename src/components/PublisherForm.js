@@ -56,7 +56,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="name">
-        <Form.Label>Tên Nhà Xuất Bản</Form.Label>
+        <Form.Label>Tên Người / Cơ Quan Phê Duyệt</Form.Label>
         <Form.Control
           type="text"
           name="name"
@@ -67,7 +67,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="address">
-        <Form.Label>Địa Chỉ</Form.Label>
+        <Form.Label>Địa Chỉ Phê Duyệt</Form.Label>
         <Form.Control
           type="text"
           name="address"
@@ -77,7 +77,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="phone">
-        <Form.Label>Số Điện Thoại</Form.Label>
+        <Form.Label>Số Điện Thoại Liên Hệ</Form.Label>
         <Form.Control
           type="number"
           name="phone"
@@ -87,7 +87,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="email">
-        <Form.Label>Địa Chỉ Email</Form.Label>
+        <Form.Label>Địa Chỉ Email Liên Hệ</Form.Label>
         <Form.Control
           type="email"
           name="email"
@@ -97,7 +97,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
       </Form.Group>
 
       <Form.Group controlId="description">
-        <Form.Label>Mô Tả</Form.Label>
+        <Form.Label>Mô Tả Về Bộ Phận Phê Duyệt</Form.Label>
         <Form.Control
           as="textarea"
           name="description"
@@ -107,7 +107,7 @@ const PublisherForm = ({ publisher, onSubmit }) => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        {publisher ? 'Update' : 'Create'}
+        {publisher ? 'Cập Nhật Hồ Sơ' : 'Tạo Hồ Sợ Mới'}
       </Button>
     </Form>
   );

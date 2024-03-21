@@ -96,8 +96,8 @@ const LoginForm = () => {
   return (
     <div className="app-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="login-container">
-        <div className="title">Log in</div>
-        <div className="text">Email</div>
+        <div className="title">Đăng Nhập</div>
+        <div className="text">Địa Chỉ Email</div>
         <input
           type="email"
           placeholder="Enter Email"
@@ -105,10 +105,10 @@ const LoginForm = () => {
           onChange={(event) => setEmail(event.target.value)}
         />
         <div className="input-2">
-          Password
+          Mật Khẩu
           <input
             type={isShowPassword === true ? 'text' : 'password'}
-            placeholder="Password"
+            placeholder="Nhập Mật Khẩu"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             onKeyDown={(event) => handlePressEnter(event)}
@@ -120,7 +120,7 @@ const LoginForm = () => {
         </div>
         {isOTPSent ? (
           <>
-            <div className="text">OTP</div>
+            <div className="text">Mã Xác Thực đOTP</div>
             <input
               type="text"
               placeholder="Enter OTP"
@@ -134,7 +134,7 @@ const LoginForm = () => {
               onClick={handleVerifyOTP}
             >
               {loadingApi && <FontAwesomeIcon icon={faSync} spin />}
-              &nbsp; Verify OTP
+              &nbsp; Xác Thực OTP
             </button>
             
 
@@ -148,14 +148,14 @@ const LoginForm = () => {
           >
             
             {loadingApi && <FontAwesomeIcon icon={faSync} spin />}
-            &nbsp; Login
+            &nbsp; Đăng Nhập
           </button>
         )}
         <div className="back" onClick={() => navigate('/')}>
-          &laquo; Go back
+          &laquo; Quay lại trang chủ
         </div>
         <div className="forgot-password" onClick={() => navigate('/forgot-password')}>
-              Forgot Password?
+             Quên Mật Khẩu ?
             </div>
       </div>
     </div>

@@ -59,13 +59,13 @@ const MyProfile = () => {
                     <Col md={8}>
                         <h2 className="mb-4">
                             <FaUserCircle className="me-2" />
-                            My Profile
+                           Hồ Sơ Nhân Viên
                         </h2>
                         <Form onSubmit={handleUpdateProfile}>
                             <Form.Group controlId="formAvatar" className="mb-3">
                                 <Form.Label>
                                     <FaUserCircle className="me-2" />
-                                    Avatar
+                                    Hình Đại Diện
                                 </Form.Label>
                                 <div className="d-flex align-items-center">
                                     <Image
@@ -90,7 +90,7 @@ const MyProfile = () => {
                             <Form.Group controlId="formEmail" className="mb-3">
                                 <Form.Label>
                                     <FaEnvelope className="me-2" />
-                                    Email
+                                    Địa Chỉ Email
                                 </Form.Label>
                                 <Form.Control type="email" value={userProfile.email} disabled />
                             </Form.Group>
@@ -98,7 +98,7 @@ const MyProfile = () => {
                             <Form.Group controlId="formPhone" className="mb-3">
                                 <Form.Label>
                                     <FaPhoneAlt className="me-2" />
-                                    Phone
+                                    Số Điện Thoại
                                 </Form.Label>
                                 <Form.Control
                                     type="text"
@@ -109,7 +109,7 @@ const MyProfile = () => {
                             </Form.Group>
 
                             <Form.Group controlId="formFullname" className="mb-3">
-                                <Form.Label>Fullname</Form.Label>
+                                <Form.Label>Họ Tên Nhân Viên</Form.Label>
                                 <Form.Control
                                     type="text"
                                     name="fullname"
@@ -121,7 +121,7 @@ const MyProfile = () => {
                             <Form.Group controlId="formAddress" className="mb-3">
                                 <Form.Label>
                                     <FaMapMarkerAlt className="me-2" />
-                                    Address
+                                    Địa Chỉ Nhân Viên
                                 </Form.Label>
                                 <Form.Control
                                     type="text"
@@ -135,23 +135,23 @@ const MyProfile = () => {
                                 <Form.Label>
                                     <FaMars className="me-2 text-primary" />
                                     <FaVenus className="me-2 text-danger" />
-                                    Sex
+                                    Giới Tính
                                 </Form.Label>
                                 <Form.Select
                                     name="sex"
                                     value={updatedProfile.sex || ''}
                                     onChange={handleInputChange}
                                 >
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="">Chọn</option>
+                                    <option value="Male">Nam</option>
+                                    <option value="Female">Nữ</option>
                                 </Form.Select>
                             </Form.Group>
 
                             <Form.Group controlId="formBirthday" className="mb-3">
                                 <Form.Label>
                                     <FaCalendarAlt className="me-2" />
-                                    Birthday
+                                    Ngày Sinh
                                 </Form.Label>
                                 <Form.Control
                                     type="date"
@@ -162,7 +162,7 @@ const MyProfile = () => {
                             </Form.Group>
 
                             <Form.Group controlId="subscribe">
-                                <Form.Label>Mô tả về bản thân</Form.Label>
+                                <Form.Label>Mô tả về bản thân của nhân viên</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Nhập mô tả về bản thân"
@@ -173,7 +173,7 @@ const MyProfile = () => {
                             </Form.Group>
 
                             <Button variant="primary" type="submit">
-                                Update Profile
+                                Cập Nhật Hồ Sơ Nhân Viên
                             </Button>
                         </Form>
                     </Col>

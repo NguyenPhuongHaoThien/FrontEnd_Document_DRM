@@ -40,19 +40,19 @@ const PublisherTable = () => {
   return (
     <Container>
       <Card className="mb-3">
-        <Card.Header as="h5">Quản lý nhà xuất bản</Card.Header>
+        <Card.Header as="h5">Quản lý Hồ Sơ nhà xuất bản</Card.Header>
         <Card.Body>
           <Button variant="primary" onClick={handleAddPublisher} className="mb-3">
-            Thêm nhà xuất bản
+            Thêm Hồ Sơ nhà xuất bản
           </Button>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Mã Nhà Xuất Bản</th>
-                <th>Tên Nhà Xuất Bản</th>
-                <th>Địa Chỉ</th>
-                <th>Số Điện Thoại</th>
-                <th>Địa Chỉ Email</th>
+                <th>Mã Người / Cơ Quan Phê Duyệt</th>
+                <th>Tên Người / Cơ Quan Phê Duyệt</th>
+                <th>Địa Chỉ Phê Duyệt</th>
+                <th>Số Điện Thoại Liên Hệ</th>
+                <th>Địa Chỉ Email Liên Hệ</th>
                 <th>Mô Tả</th>
                 <th>Hành Động</th>
               </tr>
@@ -72,13 +72,13 @@ const PublisherTable = () => {
                       onClick={() => handleChangePublisher(publisher)}
                       className="me-2"
                     >
-                      Update
+                      Cập Nhật Hồ Sơ Bộ Phận Phê Quyệt
                     </Button>
                     <Button
                       variant="danger"
                       onClick={() => handleDeletePublisher(publisher.id)}
                     >
-                      Delete
+                      Xóa Hồ Sơ Bộ Phận Phê Quyệt
                     </Button>
                   </td>
                 </tr>
@@ -90,7 +90,7 @@ const PublisherTable = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedPublisher ? 'Update Publisher' : 'Add Publisher'}</Modal.Title>
+          <Modal.Title>{selectedPublisher ? 'Cập Nhật Hồ Sơ' : 'Thêm Hồ Sơ Mới'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <PublisherForm publisher={selectedPublisher} onSubmit={handleFormSubmit} />

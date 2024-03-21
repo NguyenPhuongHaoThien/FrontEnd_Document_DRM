@@ -80,4 +80,15 @@ const updateUserProfile = async (userId, updatedData) => {
     }
 };
 
-export {loginApi, forgotPasswordApi, verifyResetPasswordTokenApi, resetPasswordApi, verifyOTPApi, registerApi, fetchAllUsers, fetchUserById, updateUserProfile };
+const fetchHistoryOrders = async () => {
+    try {
+      const response = await axios.get('/user/history');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching history orders:', error);
+      throw error;
+    }
+  };
+
+
+export {loginApi, forgotPasswordApi, verifyResetPasswordTokenApi, resetPasswordApi, verifyOTPApi, registerApi, fetchAllUsers, fetchUserById, updateUserProfile, fetchHistoryOrders };
