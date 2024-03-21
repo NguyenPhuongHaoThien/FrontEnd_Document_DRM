@@ -1,0 +1,103 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+  font-size: 14px;
+  color: #6c757d;
+
+  h4 {
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        color: #007bff;
+        margin-right: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    li {
+      margin-right: 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        color: #6c757d;
+        font-size: 24px;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+  }
+
+  .newsletter-form {
+    display: flex;
+
+    input[type='email'] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 4px 0 0 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken(#007bff, 10%);
+      }
+    }
+  }
+
+  .copyright {
+    margin-top: 30px;
+    text-align: center;
+    color: #6c757d;
+  }
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+
+    .social-icons {
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .newsletter-form {
+      margin-top: 20px;
+    }
+  }
+}
