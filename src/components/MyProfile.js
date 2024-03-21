@@ -87,6 +87,14 @@ const MyProfile = () => {
                                 <Form.Control type="text" value={userProfile.username} disabled />
                             </Form.Group>
 
+                            <Form.Group controlId="formUsername" className="mb-3">
+                                <Form.Label>
+                                    <FaUserCircle className="me-2" />
+                                    Chức Vụ
+                                </Form.Label>
+                                <Form.Control type="text" value={userProfile.position} disabled />
+                            </Form.Group> 
+
                             <Form.Group controlId="formEmail" className="mb-3">
                                 <Form.Label>
                                     <FaEnvelope className="me-2" />

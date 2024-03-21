@@ -2,7 +2,7 @@ import axios from './axios';
 
 const fetchAllPublishers = async () => {
   try {
-    const response = await axios.get('/publishers');
+    const response = await axios.get('/admin/publishers');
     return response.data;
   } catch (error) {
     console.error('Failed to fetch publishers:', error);
@@ -12,7 +12,7 @@ const fetchAllPublishers = async () => {
 
 const createPublisher = async (publisher) => {
   try {
-    const response = await axios.post('/create-publisher', publisher);
+    const response = await axios.post('/admin/create-publisher', publisher);
     return response.data;
   } catch (error) {
     console.error('Failed to create publisher:', error);
@@ -22,7 +22,7 @@ const createPublisher = async (publisher) => {
 
 const updatePublisher = async (publisher) => {
   try {
-    const response = await axios.post('/update-publisher', publisher);
+    const response = await axios.post('/admin/update-publisher', publisher);
     return response.data;
   } catch (error) {
     console.error('Failed to update publisher:', error);
@@ -32,7 +32,7 @@ const updatePublisher = async (publisher) => {
 
 const deletePublisher = async (publisherId) => {
   try {
-    await axios.post('/delete-publisher', { id: publisherId });
+    await axios.post('/admin/delete-publisher', { id: publisherId });
   } catch (error) {
     console.error('Failed to delete publisher:', error);
     throw error;
@@ -41,7 +41,7 @@ const deletePublisher = async (publisherId) => {
 
 const getPublisherById = async (publisherId) => {
   try {
-    const response = await axios.get(`/publisher/${publisherId}`);
+    const response = await axios.get(`/admin/publisher/${publisherId}`);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch publisher:', error);
