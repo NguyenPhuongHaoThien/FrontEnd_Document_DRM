@@ -167,5 +167,25 @@ const fetchFreeDocuments = async (searchTerm = '', page = 0, size = 10) => {
         throw error;
     }
 };
+
+const fetchReadingHistory = async (userId) => {
+    try {
+      const response = await axios.get(`/reading-history/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching reading history:', error);
+      throw error;
+    }
+  };
+
+ const saveReadingHistory = async (userId, documentId, currentPage) => {
+  try {
+    await axios.post('/reading-history', { userId, documentId, currentPage });
+  } catch (error) {
+    console.error('Error saving reading history:', error);
+    throw error;
+  }
+};
+
   
-  export { fetchAllDocument, PDFService, fetchDocumentDetail, getDocumentById, createDocument, updateDocument, deleteDocument, fetchFreeDocuments, fetchDocumentsByCategoryName };
+  export { fetchAllDocument, PDFService, fetchDocumentDetail, getDocumentById, createDocument, updateDocument, deleteDocument, fetchFreeDocuments, fetchDocumentsByCategoryName, fetchReadingHistory, saveReadingHistory };

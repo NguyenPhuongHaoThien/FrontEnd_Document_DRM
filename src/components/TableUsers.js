@@ -83,15 +83,41 @@ const TableUsers = () => {
 
   // Hàm xử lý khi chọn tài liệu để đặt hàng
   const handleDocumentSelect = (document) => {
-    setSelectedDocumentsForOrder((prevSelectedDocuments) => {
-      if (prevSelectedDocuments.includes(document)) {
-        return prevSelectedDocuments.filter((doc) => doc !== document);
+    const isDocumentInList = selectedDocumentsForOrder.some(
+      (item) => item.id === document.id
+    );
+  
+    if (isDocumentInList) {
+      // Nếu tài liệu đã có trong danh sách, kiểm tra xem còn hạn hay không
+      const existingOrderItem = selectedDocumentsForOrder.find(
+        (item) => item.id === document.id
+      );
+  
+      const activation = existingOrderItem.activationCode;
+  
+      if (activation && activation.status === 'USED' && new Date(activation.endDate) > new Date()) {
+        // Nếu tài liệu còn hạn, thông báo cho người dùng
+        alert(
+          `Bạn đã có quyền truy cập tài liệu "${document.name}" cho đến ${new Date(
+            activation.endDate
+          ).toLocaleString()}`
+        );
+        return;
       } else {
-        return [...prevSelectedDocuments, document];
+        // Nếu tài liệu đã hết hạn, xóa khỏi danh sách
+        setSelectedDocumentsForOrder((prevSelectedDocuments) =>
+          prevSelectedDocuments.filter((doc) => doc !== document)
+        );
       }
-    });
+    } else {
+      // Nếu tài liệu chưa có trong danh sách, thêm vào
+      setSelectedDocumentsForOrder((prevSelectedDocuments) => [
+        ...prevSelectedDocuments,
+        document,
+      ]);
+    }
   };
-
+  
   // Hàm xử lý khi đặt hàng
   const handlePlaceOrder = () => {
     placeOrder(validDays)
@@ -129,9 +155,15 @@ const TableUsers = () => {
   };
 
   // Hàm xử lý khi hiển thị modal chi tiết tài liệu
-  const handleShowDocumentDetail = (document) => {
-    setSelectedDocument(document);
-    setShowDocumentModal(true);
+  const handleShowDocumentDetail = async (document) => {
+    try {
+      const data = await fetchDocumentDetail(document.id);
+      setSelectedDocument(data);
+      setShowDocumentModal(true);
+    } catch (error) {
+      console.error('Error fetching document details:', error);
+      alert('Failed to fetch document details. Please try again.');
+    }
   };
 
   // Hàm xử lý khi đóng modal chi tiết tài liệu
@@ -201,8 +233,9 @@ const TableUsers = () => {
                   onChange={handleCategoryChange}
                 >
                   <option value="all">Tất cả</option>
-                  <option value="Nguyen Minh Phuong">Nguyen Minh Phuong</option>
-                  <option value="category2">Thể loại 2</option>
+                  <option value="Văn Bản">Văn Bản</option>
+                  <option value="Nghị Quyết">Nghị Quyết</option>
+                  <option value="Quy Định">Quy Định</option>
                   {/* Thêm các lựa chọn khác */}
                 </Form.Select>
               </InputGroup>
@@ -321,10 +354,13 @@ const TableUsers = () => {
         </Modal.Header>
         <Modal.Body>
           {selectedDocument && (
-            <
-              DocumentDetail  document={selectedDocument} 
-              onReadDocument={handleReadDocument} 
-              onAddToCart={handleAddToCart} 
+            <DocumentDetail
+              document={selectedDocument.document}
+              category={selectedDocument.category}
+              author={selectedDocument.author}
+              publisher={selectedDocument.publisher}
+              onReadDocument={handleReadDocument}
+              onAddToCart={handleAddToCart}
             />
           )}
         </Modal.Body>

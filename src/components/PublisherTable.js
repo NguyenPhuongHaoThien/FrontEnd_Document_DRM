@@ -40,7 +40,7 @@ const PublisherTable = () => {
   return (
     <Container>
       <Card className="mb-3">
-        <Card.Header as="h5">Quản lý Hồ Sơ nhà xuất bản</Card.Header>
+        <Card.Header as="h5">Quản lý Hồ Sơ Người / Cơ Quan Phê Duyệt</Card.Header>
         <Card.Body>
           <Button variant="primary" onClick={handleAddPublisher} className="mb-3">
             Thêm Hồ Sơ nhà xuất bản

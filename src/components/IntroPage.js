@@ -12,8 +12,8 @@ import { useNavigate } from 'react-router-dom';
 
 const IntroPage = () => {
     const navigate = useNavigate();
-    const navigateToHome = () => {
-        navigate('/');
+    const navigateToLogin = () => {
+        navigate('/login');
     };
 
   return (
@@ -22,7 +22,7 @@ const IntroPage = () => {
         <Container>
           <h1 className="animate__animated animate__fadeInDown">DRM DOCUMENT</h1>
           <p className="animate__animated animate__fadeInUp">Hệ thống quản lý văn bản an toàn và hiệu quả cho cơ quan</p>
-          <Button variant="primary" size="lg" className="animate__animated animate__fadeInUp animate__delay-1s" onClick={navigateToHome}>Bắt đầu ngay</Button>
+          <Button variant="primary" size="lg" className="animate__animated animate__fadeInUp animate__delay-1s" onClick={navigateToLogin}>Bắt đầu ngay</Button>
         </Container>
       </header>
 

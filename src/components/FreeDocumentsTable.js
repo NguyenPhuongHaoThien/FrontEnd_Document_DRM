@@ -9,6 +9,7 @@ import { CartContext } from '../context/CartContext';
 import DocumentDetail from './DocumentDetail';
 import { FaBookOpen, FaShoppingCart, FaInfoCircle, FaLock, FaLockOpen, FaSearch, FaListAlt  } from 'react-icons/fa';
 import { fetchDocumentDetail } from '../services/DocumentService';
+import { Badge, ListGroup } from 'react-bootstrap';
 
 const FreeDocumentsTable  = () => {
   // Các state để quản lý danh sách tài liệu, phân trang, tìm kiếm và lọc
@@ -185,15 +186,16 @@ const FreeDocumentsTable  = () => {
         <FaListAlt />
       </InputGroup.Text>
       <Form.Select
-        aria-label="Select category"
-        value={selectedCategory}
-        onChange={handleCategoryChange}
-      >
-        <option value="all">Tất cả</option>
-        <option value="Nguyen Minh Phuong">Nguyen Minh Phuong</option>
-        <option value="category2">Thể loại 2</option>
-        {/* Thêm các lựa chọn khác */}
-      </Form.Select>
+          aria-label="Select category"
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        >
+          <option value="all">Tất cả</option>
+          <option value="Văn Bản">Văn Bản</option>
+          <option value="Nghị Quyết">Nghị Quyết</option>
+          <option value="Quy Định">Quy Định</option>
+          {/* Thêm các lựa chọn khác */}
+        </Form.Select>
     </InputGroup>
   </Col>
 </Row>
@@ -225,22 +227,17 @@ const FreeDocumentsTable  = () => {
                   </Card.Text>
                   {/* Quyền đọc tài liệu */}
                   <Card.Text>
-                    <strong>Quyền đọc:</strong>{' '}
-                    {item.drmEnable ? (
-                      item.activationCode.status === 'USED' ? (
+                    <Badge bg={item.drmEnabled ? 'success' : 'danger'}>
+                      {item.drmEnabled ? (
                         <>
-                          <FaLock style={{ color: 'green', verticalAlign: 'middle' }} /> Đọc Với Quyền Đã Cấp
+                          <FaLock className="me-2" /> DRM Enabled
                         </>
                       ) : (
                         <>
-                          <FaLockOpen style={{ color: 'red', verticalAlign: 'middle' }} /> Xin Cấp Quyền
+                          <FaLockOpen className="me-2" /> Không có DRM
                         </>
-                      )
-                    ) : (
-                      <>
-                        <FaLockOpen style={{ color: 'green', verticalAlign: 'middle' }} /> Đọc Tự Do
-                      </>
-                    )}
+                      )}
+                    </Badge>
                   </Card.Text>
                   {/* Nút đọc tài liệu */}
                   {user.auth && (

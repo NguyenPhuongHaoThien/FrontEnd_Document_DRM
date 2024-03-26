@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faSync } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import backgroundImage from '../assets/OIP.jpg';
+import backgroundImage from '../assets/OIG1.h.jpg';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -61,6 +61,8 @@ const LoginForm = () => {
     }
   };
 
+  
+
   const handleVerifyOTP = async () => {
     setLoadingApi(true);
     try {
@@ -71,6 +73,7 @@ const LoginForm = () => {
         localStorage.setItem('token', token);
         loginContext(email, token, id, role);
         navigate('/');
+        window.location.reload();
       } else {
         toast.error(res.data.message);
       }
@@ -151,7 +154,7 @@ const LoginForm = () => {
             &nbsp; Đăng Nhập
           </button>
         )}
-        <div className="back" onClick={() => navigate('/')}>
+        <div className="back" onClick={() => navigate('/intro')}>
           &laquo; Quay lại trang chủ
         </div>
         <div className="forgot-password" onClick={() => navigate('/forgot-password')}>

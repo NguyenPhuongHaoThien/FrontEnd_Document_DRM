@@ -17,6 +17,7 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     navigate('/login');
+    window.location.reload();
     toast.success('Đăng xuất thành công');
   };
 
@@ -28,8 +29,8 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
-        <Container>
+      <Navbar bg="dark" variant="dark" expand="lg" className="mb-3" fixed="top">
+        <Container fluid>
           <Navbar.Brand href="/intro">
             <House size={24} className="me-2" />
             WAKA
@@ -45,24 +46,36 @@ const Header = () => {
                   <Book size={20} className="me-2" />
                   Tài liệu miễn phí
                 </Nav.Link>
-                <Nav.Link href="/admin">Quản Lý</Nav.Link>
+                {user && user.role === 'ROLE_ADMIN' && (
+                  <Nav.Link href="/admin">Quản Lý</Nav.Link>
+                )}
               </Nav>
               <Nav>
                 {user && user.email && <span className="nav-link text-light">Xin chào: {user.email}</span>}
-                <Link to="/cart" className="nav-link text-light position-relative">
-                  <CartIcon size={20} className="me-2" />
-                  Danh Sách Xin
-                  {orderItems && orderItems.length > 0 && (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {orderItems.length}
-                      <span className="visually-hidden">số lượng tài liệu: </span>
-                    </span>
-                  )}
-                </Link>
-                <Nav.Link href="/user/history">
-                  <Book size={20} className="me-2" />
-                  Lịch sử Xin Quyền
-                </Nav.Link>
+                {user && user.auth && (
+                  <>
+                    <Link to="/cart" className="nav-link text-light position-relative">
+                      <CartIcon size={20} className="me-2" />
+                      Danh Sách Xin
+                      {orderItems && orderItems.length > 0 && (
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          {orderItems.length}
+                          <span className="visually-hidden">số lượng tài liệu: </span>
+                        </span>
+                      )}
+                    </Link>
+                    <Nav.Link href="/user/history">
+                      <Book size={20} className="me-2" />
+                      Lịch sử Xin Quyền
+                    </Nav.Link>
+
+                    <Nav.Link href="/reading-history">
+                        <Book size={20} className="me-2" />
+                        Lịch sử đọc
+                    </Nav.Link>
+                    
+                  </>
+                )}
                 <NavDropdown title={<PersonCircle size={20} className="me-2" />} id="basic-nav-dropdown">
                   {user && user.auth ? (
                     <>

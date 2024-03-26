@@ -1,9 +1,10 @@
+// src/components/BookReaderPdf.js
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Document, Page } from 'react-pdf';
 import { PDFService } from '../services/PDFService';
 import { UserContext } from '../context/UserContext';
-import { getDocumentById } from '../services/DocumentService';
+import { getDocumentById, saveReadingHistory } from '../services/DocumentService';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
@@ -18,6 +19,7 @@ const BookReaderPdf = () => {
   const [activationCode, setActivationCode] = useState('');
   const [showActivationCodeModal, setShowActivationCodeModal] = useState(false);
   const [isDrmProtected, setIsDrmProtected] = useState(false);
+
   useEffect(() => {
     const fetchDocument = async () => {
       try {
@@ -44,6 +46,23 @@ const BookReaderPdf = () => {
       toast.error('Bạn cần đăng nhập để đọc tài liệu.');
     }
   }, [id, user.auth, user.role]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialPage = parseInt(searchParams.get('page')) || 1;
+    setPageNumber(initialPage);
+  }, []);
+
+  const handlePageChange = async (newPageNumber) => {
+    setPageNumber(newPageNumber);
+    try {
+      console.log('Saving reading history...', user.id, id, newPageNumber);
+      await saveReadingHistory(user.id, id, newPageNumber);
+      console.log('Reading history saved successfully');
+    } catch (error) {
+      console.error('Error saving reading history:', error);
+    }
+  };
 
   const handleActivationCodeSubmit = async () => {
     if (activationCode.trim() === '') {
@@ -74,49 +93,73 @@ const BookReaderPdf = () => {
     setPageInput(e.target.value);
   };
 
-  const goToPage = () => {
+  const goToPage = async () => {
     const newPageNumber = Number(pageInput);
     if (newPageNumber >= 1 && newPageNumber <= numPages) {
-      setPageNumber(newPageNumber);
+      console.log('Going to page...', newPageNumber);
+      await handlePageChange(newPageNumber);
+      console.log('Page changed successfully');
     }
   };
 
   useEffect(() => {
     document.onkeydown = function (e) {
       if (e.keyCode === 123) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng Developer Tools!');
+        return false;
+      }
+      if (e.ctrlKey && e.keyCode === 80) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép in trang này!');
+        return false;
+      }
+      if (e.keyCode === 91 || e.keyCode === 92) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng phím Windows!');
         return false;
       }
       if (e.ctrlKey && e.shiftKey && e.keyCode === 'I'.charCodeAt(0)) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng tổ hợp phím Ctrl + Shift + I!');
         return false;
       }
       if (e.ctrlKey && e.shiftKey && e.keyCode === 'C'.charCodeAt(0)) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng tổ hợp phím Ctrl + Shift + C!');
         return false;
       }
       if (e.ctrlKey && e.shiftKey && e.keyCode === 'J'.charCodeAt(0)) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng tổ hợp phím Ctrl + Shift + J!');
         return false;
       }
       if (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0)) {
+        e.preventDefault();
+        toast.warning('Bạn không được phép sử dụng tổ hợp phím Ctrl + U!');
         return false;
       }
-    };
-    document.oncontextmenu = function (e) {
-      e.preventDefault();
     };
 
-    window.onkeydown = function(e) {
-      if (e.ctrlKey && e.keyCode === 80) {
-        return false;
-      }
-      if (e.keyCode === 44) {
-        return false;
-      }
-      if (e.metaKey && e.keyCode === 82) {
-        return false;
-      }
+    document.oncontextmenu = function (e) {
+      e.preventDefault();
+      toast.warning('Bạn không được phép sử dụng chuột phải!');
+    };
+
+    document.oncopy = function (e) {
+      e.preventDefault();
+      toast.warning('Bạn không được phép sao chép văn bản!');
     };
 
     document.onmouseleave = function() {
       setIsMouseOutside(true);
+    };
+
+    return () => {
+      document.onkeydown = null;
+      document.oncontextmenu = null;
+      document.oncopy = null;
+      document.onmouseleave = null;
     };
   }, []);
 
@@ -190,13 +233,20 @@ const BookReaderPdf = () => {
           <div style={{ width: '700px', border: '3px solid gray' }}>
             <div>
               <p>Page {pageNumber} of {numPages}</p>
-              <button onClick={() => setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1))}>Previous</button>
-              <button onClick={() => setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages))}>Next</button>
+              <button onClick={() => handlePageChange(Math.max(pageNumber - 1, 1))}>Previous</button>
+              <button onClick={() => handlePageChange(Math.min(pageNumber + 1, numPages))}>Next</button>
               <input type="number" value={pageInput} onChange={handlePageInput} />
               <button onClick={goToPage}>Go to page</button>
             </div>
             <div style={{ height: '700px', overflow: 'auto' }}>
-              <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+              <Document
+                file={file}
+                onLoadSuccess={onDocumentLoadSuccess}
+                onCopy={(e) => {
+                  e.preventDefault();
+                  toast.warning('Bạn không được phép sao chép văn bản!');
+                }}
+              >
                 <Page pageNumber={pageNumber} />
               </Document>
             </div>

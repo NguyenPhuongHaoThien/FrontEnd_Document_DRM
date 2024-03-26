@@ -45,7 +45,7 @@ const CategoryTable = () => {
   return (
     <Container>
       <Card className="mb-3">
-        <Card.Header as="h5">Quản lý danh mục</Card.Header>
+        <Card.Header as="h5">Quản lý Hồ Sơ Loại Tài Liệu</Card.Header>
         <Card.Body>
           <Button variant="primary" onClick={handleAddCategory} className="mb-3">
             Thêm Hồ Sơ Loại Tài Liệu
@@ -89,7 +89,7 @@ const CategoryTable = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedCategory ? 'Update Category' : 'Add Category'}</Modal.Title>
+          <Modal.Title>{selectedCategory ? 'Cập nhật hồ sơ loại tài liệu' : 'Tạo hồ sơ loại tài liệu'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CategoryForm category={selectedCategory} onSubmit={handleFormSubmit} />
